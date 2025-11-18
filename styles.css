@@ -10,7 +10,7 @@ body {
     background-color: #0f0f1e;
     color: #ffffff;
     font-size: 16px;
-    overflow: hidden;
+    
     /* Não deixa rolar pra baixo depois tira */
 
 }
@@ -49,10 +49,11 @@ header {
     filter: bklur(50px);
     z-index: 1;
     animation: pulse 4s infinite alternate;
+    /* Aquela parada do fundo ficar brilhando */
 }
 
-/* Aquela parada do fundo ficar brilhando */
-/*keyframes vamos usar muito francisco <3*/
+
+/*keyframes vamos usar muito, francisco <3*/
 @keyframes pulse {
     0% {
         transform: translate(-50%, -50%) scale(0.8);
@@ -97,8 +98,8 @@ header {
 }
 
 .product-img img {
-    max-width: 80%;
-    max-height: 60%;
+    max-width: 90%;
+    max-height: 70%;
     filter: drop-shadow(0 0 30px) rgba(0, 247, 255, 0.3);
 }
 
@@ -134,13 +135,14 @@ header {
     cursor: pointer;
 }
 
-.btn {
+.btn{
     padding: 12px 16px;
     background: linear-gradient(90deg, #00f7ff, #0066ff);
     border-radius: 30px;
     color: #000;
     font-size: 1rem;
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
     border: none;
     transition: all 0.3s ease;
@@ -215,47 +217,6 @@ header {
     background-color: #00f7ff;
     box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
 }
-
-.tech{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.circle{
-    position: absolute;
-    border: 1px solid rgba(0, 247, 255, 0.2);
-    border-radius: 50%;
-
-}
-.circle:nth-child(1){
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 10%;
-}
-.circle:nth-child(2){
-    width: 300px;
-    height: 300px;
-    bottom: 15%;
-    right: 15%;
-}
-.circle:nth-child(3){
-    width: 150px;
-    height: 150px;
-    top: 70%;
-    left: 20%;
-}
-.circle:nth-child(4){
-    width: 120px;
-    height: 120px;
-    bottom: 70%;
-    right: 25%;
-}
-
 
 header nav ul {
     display: flex;

@@ -40,7 +40,7 @@ function update(direction) {
 clearInterval(timer)
 timer =setInterval(() => {
     update(1)
-}, 5000000000000);
+}, 1000000);
         
 
 
