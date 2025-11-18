@@ -80,11 +80,15 @@ header {
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateX(100vw);
+    /*animaçao*/
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
 }
 
 .active {
     opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
 }
 
 .product-img {
@@ -95,12 +99,26 @@ header {
     align-items: center;
     position: relative;
     z-index: 2;
+
+    /*animaçao*/
+
 }
 
 .product-img img {
     max-width: 90%;
     max-height: 70%;
     filter: drop-shadow(0 0 30px) rgba(0, 247, 255, 0.3);
+
+    /*animaçao*/
+    transform: translateX(400px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    transition-delay: 0.5s;
+}
+
+.active .product-img img {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .content {
