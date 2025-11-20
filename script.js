@@ -22,23 +22,21 @@ function update(direction) {
         if (active === total) {
             active = 0
         }
-    }
-
-    else if (direction < 0) {
+    } else if (direction < 0) {
         active = active - 1
 
-        if (active < 0){
-            active = total -1
+        if (active < 0) {
+            active = total - 1
         }
     }
 
     items[active].classList.add('active')
     dots[active].classList.add('active')
-    numberIndicator.textContent = String(active + 1).padStart(2,'0')
+    numberIndicator.textContent = String(active + 1).padStart(2, '0')
 }
 
 clearInterval(timer)
-timer =setInterval(() => {
+timer = setInterval(() => {
     update(1)
 }, 1000000);
 
@@ -54,8 +52,8 @@ nextButton.addEventListener('click', () => {
 })
 
 
-  // delegação: quando clicar em .btn, abre descrição e esconde o próprio botão
-  document.body.addEventListener('click', (e) => {
+// delegação: quando clicar em .btn, abre descrição e esconde o próprio botão
+document.body.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn')
     if (!btn) return
 
@@ -65,44 +63,58 @@ nextButton.addEventListener('click', () => {
 
     // fecha outros itens abertos e restaura seus botões
     document.querySelectorAll('.item.expanded').forEach(other => {
-      if (other !== item) {
-        other.classList.remove('expanded')
-        const d = other.querySelector('.description')
-        if (d) {
-          d.setAttribute('aria-hidden', 'true')
-          d.style.maxHeight = null
+        if (other !== item) {
+            other.classList.remove('expanded')
+            const d = other.querySelector('.description')
+            if (d) {
+                d.setAttribute('aria-hidden', 'true')
+                d.style.maxHeight = null
+            }
+            const b = other.querySelector('.btn')
+            if (b) {
+                b.classList.remove('hidden')
+                b.style.display = '' // volta ao estilo original
+                b.textContent = 'Saiba Mais'
+            }
         }
-        const b = other.querySelector('.btn')
-        if (b) {
-          b.classList.remove('hidden')
-          b.style.display = '' // volta ao estilo original
-          b.textContent = 'Saiba Mais'
-        }
-      }
     })
 
     // abre a descrição do item clicado e esconde o botão
     if (!item.classList.contains('expanded')) {
-      item.classList.add('expanded')
-      if (desc) {
-        desc.setAttribute('aria-hidden', 'false')
-        desc.style.maxHeight = desc.scrollHeight + 'px'
-      }
-      btn.classList.add('hidden')
-      btn.style.display = 'none'
+        item.classList.add('expanded')
+        if (desc) {
+            desc.setAttribute('aria-hidden', 'false')
+            desc.style.maxHeight = desc.scrollHeight + 'px'
+        }
+        btn.classList.add('hidden')
+        btn.style.display = 'none'
     }
-  })
+})
 
-  /* Efeito hover nos cards de produto */
-  const cards = document.querySelectorAll(".produto-card");
+/* Efeito hover nos cards de produto */
+const cards = document.querySelectorAll(".produto-card");
 
-  cards.forEach(card => {
+cards.forEach(card => {
     card.addEventListener("mouseenter", () => {
-      card.style.transition = "transform 0.25s ease";
-      card.style.transform = "translateY(-8px) scale(1.02)";
+        card.style.transition = "transform 0.25s ease";
+        card.style.transform = "translateY(-8px) scale(1.02)";
     });
 
     card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0) scale(1)";
+        card.style.transform = "translateY(0) scale(1)";
     });
-  });
+});
+
+/* Efeito hover nos cards da seção "Mais Vendidos" */
+const vendidosCards = document.querySelectorAll(".vendidos-card");
+
+vendidosCards.forEach(card => {
+    card.addEventListener("mouseenter", () => {
+        card.style.transition = "transform 0.25s ease";
+        card.style.transform = "translateY(-8px) scale(1.02)";
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0) scale(1)";
+    });
+});
