@@ -5,7 +5,6 @@ const dots = document.querySelectorAll('.dot')
 const numberIndicator = document.querySelector('.number')
 const list = document.querySelector('.list')
 
-
 let active = 0
 const total = items.length
 let timer;
@@ -14,8 +13,6 @@ function update(direction) {
 
     document.querySelector('.item.active').classList.remove('active')
     document.querySelector('.dot.active').classList.remove('active')
-
-
 
     if (direction > 0) {
         active = active + 1
@@ -40,17 +37,13 @@ timer = setInterval(() => {
     update(1)
 }, 1000000);
 
-
-
 prevButton.addEventListener('click', () => {
     update(-1)
 })
 
-
 nextButton.addEventListener('click', () => {
     update(1)
 })
-
 
 // delegação: quando clicar em .btn, abre descrição e esconde o próprio botão
 document.body.addEventListener('click', (e) => {
@@ -61,7 +54,7 @@ document.body.addEventListener('click', (e) => {
     if (!item) return
     const desc = item.querySelector('.description')
 
-    // fecha outros itens abertos e restaura seus botões
+    // fecha outros itens abertos
     document.querySelectorAll('.item.expanded').forEach(other => {
         if (other !== item) {
             other.classList.remove('expanded')
@@ -73,13 +66,13 @@ document.body.addEventListener('click', (e) => {
             const b = other.querySelector('.btn')
             if (b) {
                 b.classList.remove('hidden')
-                b.style.display = '' // volta ao estilo original
+                b.style.display = '' 
                 b.textContent = 'Saiba Mais'
             }
         }
     })
 
-    // abre a descrição do item clicado e esconde o botão
+    // abre o selecionado
     if (!item.classList.contains('expanded')) {
         item.classList.add('expanded')
         if (desc) {
@@ -105,7 +98,7 @@ cards.forEach(card => {
     });
 });
 
-/* Efeito hover nos cards da seção "Mais Vendidos" */
+/* Efeito hover nos cards "Mais Vendidos" */
 const vendidosCards = document.querySelectorAll(".vendidos-card");
 
 vendidosCards.forEach(card => {
@@ -117,4 +110,45 @@ vendidosCards.forEach(card => {
     card.addEventListener("mouseleave", () => {
         card.style.transform = "translateY(0) scale(1)";
     });
+});
+
+
+
+/* --------------------------------------------------
+   SCROLL SUAVE PERSONALIZADO (COM EASING PROFISSIONAL)
+-------------------------------------------------- */
+
+function smoothScrollTo(targetY, duration = 1200) {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        // Easing: easeInOutQuad
+        const ease = progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+        window.scrollTo(0, startY + distance * ease);
+
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    requestAnimationFrame(animation);
+}
+
+document.getElementById("btn-produtos").addEventListener("click", () => {
+    const target = document.getElementById("estoque").offsetTop - 30;
+    smoothScrollTo(target, 1200); // mais suave
+});
+
+// Rolar suavemente até o footer (contatos)
+document.getElementById("btn-contatos").addEventListener("click", () => {
+    const target = document.getElementById("contatos").offsetTop - 20;
+    smoothScrollTo(target, 1200); // mesma animação suave
 });

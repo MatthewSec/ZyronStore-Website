@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    font-family: "Montserrat" sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
@@ -11,25 +11,26 @@ body {
     color: #ffffff;
     font-size: 16px;
     overflow-x: hidden;
-    /* Não deixa rolar pra baixo depois tira */
 }
 
+/* HEADER - corrigido */
 header {
     position: fixed;
     top: 0;
-    width: 90vw;
+    width: 100%;
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 3;
+    z-index: 9999; /* garante que header fica sempre clicável */
+    pointer-events: auto;
+    background: transparent;
 }
 
 .container {
     height: 100vh;
     position: relative;
     background: linear-gradient(135deg, #0f0f1e 0%, #1f1f3a 100%);
-    /* Não deixa rolar pra baixo depois tira */
 }
 
 .container::before {
@@ -42,14 +43,10 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    filter: bklur(50px);
+    filter: blur(50px);
     z-index: 1;
     animation: pulse 4s infinite alternate;
-    /* Aquela parada do fundo ficar brilhando */
 }
-
-
-/*keyframes vamos usar muito, francisco <3*/
 
 @keyframes pulse {
     0% {
@@ -62,13 +59,25 @@ header {
     }
 }
 
+/* RESOLUÇÃO DO PROBLEMA DE CLIQUE */
 .list {
     width: 80%;
     height: 100%;
     margin: 0 auto;
     position: relative;
     z-index: 4;
-    /* garante que botões recebam clicks se header estiver sobreposto */
+    pointer-events: none; /* slide não bloqueia mais o header */
+}
+
+/* elementos internos continuam clicáveis */
+.item,
+.product-img,
+.product-img img,
+.content,
+.btn,
+.arrow,
+.indicators {
+    pointer-events: auto;
 }
 
 .item {
@@ -79,14 +88,12 @@ header {
     align-items: center;
     opacity: 0;
     transform: translateX(100vw);
-    /*animaçao*/
     transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
 }
 
 .active {
     opacity: 1;
     transform: translateX(0);
-    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
 }
 
 .product-img {
@@ -96,15 +103,12 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 2;
-    /*animaçao*/
 }
 
 .product-img img {
     max-width: 90%;
     max-height: 70%;
-    filter: drop-shadow(0 0 30px) rgba(0, 247, 255, 0.3);
-    /*animaçao*/
+    filter: drop-shadow(0 0 30px rgba(0, 247, 255, 0.3));
     transform: translateX(400px);
     opacity: 0;
     transition: transform 0.6s ease, opacity 0.6s ease;
@@ -122,7 +126,6 @@ header {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    z-index: 2;
     flex-direction: column;
 }
 
@@ -158,10 +161,6 @@ header {
     border: none;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(0, 247, 255, 0.2);
-}
-
-.btn.hidden {
-    display: none !important;
 }
 
 .btn:hover {
@@ -269,13 +268,12 @@ header nav ul li:hover::after {
     line-height: 1.4;
 }
 
-
-/* quando aberto, JS ajusta max-height inline; esta classe auxilia visual */
-
 .item.expanded .description {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ESTOQUE */
 
 .estoque-section {
     width: 100%;
@@ -422,5 +420,41 @@ header nav ul li:hover::after {
     font-size: 0.9rem;
     color: #aaa;
     line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* FOOTER */
+
+.footer {
+    background: #000;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 2.2rem;
+    color: #00f7ff;
+    margin-bottom: 30px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 30px cyan;
+}
+
+.footer-info p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #ccc;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-copy {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #777;
     font-family: 'Montserrat', sans-serif;
 }
