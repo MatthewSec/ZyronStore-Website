@@ -10,7 +10,7 @@ body {
     background-color: #0f0f1e;
     color: #ffffff;
     font-size: 16px;
-
+    overflow-x: hidden;
     /* Não deixa rolar pra baixo depois tira */
 
 }
@@ -70,7 +70,8 @@ header {
     height: 100%;
     margin: 0 auto;
     position: relative;
-    z-index: 4; /* garante que botões recebam clicks se header estiver sobreposto */
+    z-index: 4;
+    /* garante que botões recebam clicks se header estiver sobreposto */
 }
 
 .item {
@@ -284,75 +285,75 @@ header nav ul li:hover::after {
 
 
 .estoque-section {
-  width: 100%;
-  padding: 60px 20px;
-  background: #16171D;
+    width: 100%;
+    padding: 60px 20px;
+    background: #16171D;
 }
 
 .estoque-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .estoque-title {
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: #00f7ff;
-  margin-bottom: 50px;
-  text-shadow: 0 0 100px cyan;
-  font-family: 'Montserrat', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #00f7ff;
+    margin-bottom: 50px;
+    text-shadow: 0 0 100px cyan;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .estoque-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
 }
 
 .produto-card {
-  background: #111218;
-  padding: 25px;
-  border-radius: 18px;
-  border: 1px solid #1f2025;
-  transition: 0.3s ease;
-  cursor: pointer;
+    background: #111218;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #1f2025;
+    transition: 0.3s ease;
+    cursor: pointer;
 }
 
 .produto-card:hover {
-  border-color: cyan;
-  transform: translateY(-6px);
-  box-shadow: 0 0 18px cyan;
+    border-color: cyan;
+    transform: translateY(-6px);
+    box-shadow: 0 0 18px cyan;
 }
 
 .produto-img {
-  width: 100%;
-  height: 200px;
-  background: #1b1c23;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
+    width: 100%;
+    height: 200px;
+    background: #1b1c23;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .produto-img img {
-  width: 70%;
-  height: auto;
-  object-fit: contain;
+    width: 70%;
+    height: auto;
+    object-fit: contain;
 }
 
 .produto-nome {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-bottom: 8px;
-  font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .produto-desc {
-  font-size: 0.9rem;
-  color: #aaa;
-  line-height: 1.4;
-  font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
 }
