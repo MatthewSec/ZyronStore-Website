@@ -409,7 +409,7 @@ header nav ul li:hover::after {
 .right p {
     font-size: 1.7rem;
     font-family: 'Montserrat', sans-serif;
-    color: #ccc;
+    color: #ffffff;
 }
 
 
@@ -448,3 +448,4 @@ header nav ul li:hover::after {
     color: #777;
     font-family: 'Montserrat', sans-serif;
 }
+

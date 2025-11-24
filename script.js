@@ -35,7 +35,7 @@ function update(direction) {
 clearInterval(timer)
 timer = setInterval(() => {
     update(1)
-}, 1000000);
+}, 5000);
 
 prevButton.addEventListener('click', () => {
     update(-1)
@@ -66,7 +66,7 @@ document.body.addEventListener('click', (e) => {
             const b = other.querySelector('.btn')
             if (b) {
                 b.classList.remove('hidden')
-                b.style.display = '' 
+                b.style.display = ''
                 b.textContent = 'Saiba Mais'
             }
         }
@@ -98,7 +98,7 @@ cards.forEach(card => {
     });
 });
 
-/* Efeito hover nos cards "Mais Vendidos" */
+/* Efeito hover nos cards "Mais Vendidos */
 const vendidosCards = document.querySelectorAll(".vendidos-card");
 
 vendidosCards.forEach(card => {
@@ -114,9 +114,7 @@ vendidosCards.forEach(card => {
 
 
 
-/* --------------------------------------------------
-   SCROLL SUAVE PERSONALIZADO (COM EASING PROFISSIONAL)
--------------------------------------------------- */
+/* SCROLL SUAVE PERSONALIZADO (COM EASING PROFISSIONAL)*/
 
 function smoothScrollTo(targetY, duration = 1200) {
     const startY = window.pageYOffset;
@@ -147,8 +145,15 @@ document.getElementById("btn-produtos").addEventListener("click", () => {
     smoothScrollTo(target, 1200); // mais suave
 });
 
-// Rolar suavemente até o footer (contatos)
+// Rolar suavemente até o sobre
+document.getElementById("btn-sobre").addEventListener("click", () => {
+    const target = document.getElementById("sobre").offsetTop - 20;
+    smoothScrollTo(target, 1200); // mesma animação suave
+});
+
+// Rolar suavemente até o footer
 document.getElementById("btn-contatos").addEventListener("click", () => {
     const target = document.getElementById("contatos").offsetTop - 20;
     smoothScrollTo(target, 1200); // mesma animação suave
 });
+
