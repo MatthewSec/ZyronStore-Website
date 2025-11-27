@@ -35,7 +35,7 @@ function update(direction) {
 clearInterval(timer)
 timer = setInterval(() => {
     update(1)
-}, 500);
+}, 5000);
 
 prevButton.addEventListener('click', () => {
     update(-1)
@@ -136,13 +136,27 @@ function smoothScrollTo(targetY, duration = 1200) {
     requestAnimationFrame(animation);
 }
 
+// Corrige IDs e rolagem para as seções corretas
 document.getElementById("btn-produtos").addEventListener("click", () => {
-    const target = document.getElementById("produto").offsetTop - 30;
-    smoothScrollTo(target, 1200); // mais suave
+    const target = document.getElementById("estoque");
+    if (target) {
+        const offset = target.getBoundingClientRect().top + window.pageYOffset - 30;
+        smoothScrollTo(offset, 1200);
+    }
 });
 
-// Rolar suavemente até o footer (contatos)
 document.getElementById("btn-contatos").addEventListener("click", () => {
-    const target = document.getElementById("contatos").offsetTop - 20;
-    smoothScrollTo(target, 1200); // mesma animação suave
+    const target = document.querySelector(".footer");
+    if (target) {
+        const offset = target.getBoundingClientRect().top + window.pageYOffset - 20;
+        smoothScrollTo(offset, 1200);
+    }
+});
+
+document.getElementById("btn-sobre").addEventListener("click", () => {
+    const target = document.getElementById("sobre");
+    if (target) {
+        const offset = target.getBoundingClientRect().top + window.pageYOffset - 20;
+        smoothScrollTo(offset, 1200);
+    }
 });
