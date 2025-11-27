@@ -7,7 +7,7 @@ const list = document.querySelector('.list')
 
 let active = 0
 const total = items.length
-let timer;
+let timer;3
 
 function update(direction) {
 
@@ -35,7 +35,7 @@ function update(direction) {
 clearInterval(timer)
 timer = setInterval(() => {
     update(1)
-}, 5000);
+}, 500);
 
 prevButton.addEventListener('click', () => {
     update(-1)
@@ -98,7 +98,7 @@ cards.forEach(card => {
     });
 });
 
-/* Efeito hover nos cards "Mais Vendidos */
+/* Efeito hover nos cards "Mais Vendidos" */
 const vendidosCards = document.querySelectorAll(".vendidos-card");
 
 vendidosCards.forEach(card => {
@@ -111,10 +111,6 @@ vendidosCards.forEach(card => {
         card.style.transform = "translateY(0) scale(1)";
     });
 });
-
-
-
-/* SCROLL SUAVE PERSONALIZADO (COM EASING PROFISSIONAL)*/
 
 function smoothScrollTo(targetY, duration = 1200) {
     const startY = window.pageYOffset;
@@ -141,19 +137,12 @@ function smoothScrollTo(targetY, duration = 1200) {
 }
 
 document.getElementById("btn-produtos").addEventListener("click", () => {
-    const target = document.getElementById("estoque").offsetTop - 30;
+    const target = document.getElementById("produto").offsetTop - 30;
     smoothScrollTo(target, 1200); // mais suave
 });
 
-// Rolar suavemente até o sobre
-document.getElementById("btn-sobre").addEventListener("click", () => {
-    const target = document.getElementById("sobre").offsetTop - 20;
-    smoothScrollTo(target, 1200); // mesma animação suave
-});
-
-// Rolar suavemente até o footer
+// Rolar suavemente até o footer (contatos)
 document.getElementById("btn-contatos").addEventListener("click", () => {
     const target = document.getElementById("contatos").offsetTop - 20;
     smoothScrollTo(target, 1200); // mesma animação suave
 });
-
