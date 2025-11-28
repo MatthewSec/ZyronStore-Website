@@ -168,3 +168,124 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+let carrinho = [];
+const cartCountSpan = document.querySelector('.cart-count');
+
+// Atualiza contador do carrinho
+function updateCartCount() {
+    cartCountSpan.textContent = carrinho.length;
+}
+
+// Adiciona produto ao carrinho
+function addToCart(produto) {
+    carrinho.push(produto);
+    updateCartCount();
+    showNotif(`✔️ "${produto.nome}" adicionado ao carrinho`);
+}
+
+// Notificação visual simples
+function showNotif(msg) {
+    let container = document.querySelector('.notif-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'notif-container';
+        document.body.appendChild(container);
+    }
+    const notif = document.createElement('div');
+    notif.className = 'notif';
+    notif.textContent = msg;
+    container.appendChild(notif);
+    setTimeout(() => {
+        notif.classList.add('hide');
+        setTimeout(() => notif.remove(), 500);
+    }, 1800);
+}
+
+// Adiciona evento aos botões de produto após renderização
+function ativarBotoesCarrinho() {
+    document.querySelectorAll('.product-button').forEach((btn, idx) => {
+        btn.onclick = () => {
+            addToCart(produtos[idx]);
+        };
+    });
+}
+
+// Chame após mostrarProdutos
+function mostrarProdutos() {
+    containerProdutos.classList.add('fade');
+    setTimeout(() => {
+        let htmlProdutos = "";
+
+        let termo = normalizarTexto(textoPesquisa);
+
+        let produtosFiltrados = produtos.filter(prd => {
+            let nome = normalizarTexto(prd.nome);
+            let descricao = normalizarTexto(prd.descricao);
+            return (
+                (nome.includes(termo) || descricao.includes(termo)) &&
+                (categoriaAtual === "all" || prd.categoria === categoriaAtual)
+            );
+        });
+
+        produtosFiltrados.forEach(prd => {
+            htmlProdutos += `
+                <div class="product-card">
+                    <img class="product-img" src="${prd.imagem}" alt="${prd.nome}">
+                    <div class="product-info">
+                        <h3 class="product-name">${prd.nome}</h3>
+                        <p class="product-price">R$ ${(prd.preco + 0.90).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+                        <p class="product-description">${prd.descricao}</p>
+                        <button class="product-button">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        containerProdutos.innerHTML = htmlProdutos;
+        containerProdutos.classList.remove('fade');
+
+        // Centraliza a imagem do Sony se ela existir
+        const sonyImg = document.querySelector('.product-img[alt="Sony WH-1000XM5"]');
+        if (sonyImg) sonyImg.style.objectPosition = "center center";
+
+        ativarBotoesCarrinho(); // <-- Ativa os botões do carrinho
+    }, 200);
+}
+
+
+document.querySelector('.cart-btn').addEventListener('click', () => {
+    mostrarCarrinho();
+});
+
+document.getElementById('closeCartModal').onclick = () => {
+    document.getElementById('cartModal').style.display = 'none';
+};
+
+// Função para mostrar os itens do carrinho
+function mostrarCarrinho() {
+    const modal = document.getElementById('cartModal');
+    const lista = modal.querySelector('.cart-items-list');
+    const totalDiv = modal.querySelector('.cart-total');
+    lista.innerHTML = '';
+
+    if (carrinho.length === 0) {
+        lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
+        totalDiv.textContent = '';
+    } else {
+        let total = 0;
+        carrinho.forEach(item => {
+            lista.innerHTML += `<li>
+                <span>${item.nome}</span>
+                <span>${item.preco ? 'R$ ' + (item.preco + 0.90).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : ''}</span>
+            </li>`;
+            total += item.preco ? item.preco + 0.90 : 0;
+        });
+        totalDiv.textContent = `Total: R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    }
+    modal.style.display = 'flex';
+}
+
+document.getElementById('cartModal').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+});
